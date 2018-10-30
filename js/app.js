@@ -14,6 +14,8 @@ email.addEventListener('blur', validateField);
 subject.addEventListener('blur', validateField);
 message.addEventListener('blur', validateField);
 resetBtn.addEventListener('click', resetForm);
+// emailForm.addEventListener('submit', sendEmail);
+sendBtn.addEventListener('click', sendEmail);
 
 //Functions
 function appInit() {
@@ -66,4 +68,23 @@ function validateEmail(field) {
 //Clear the whole form when RESET button is clicked
 function resetForm() {
     emailForm.reset();
+}
+
+//
+function sendEmail(e) {
+    e.preventDefault();
+
+    const spinner = document.getElementById('spinner');
+    spinner.style.display = 'block';
+
+    //Hide Spinner and show the image
+    setTimeout(() => {
+        const sent = document.getElementById('sent');
+        spinner.style.display = 'none';
+        sent.style.display = 'block';
+        setTimeout(() => {
+            resetForm();
+            sent.style.display = 'none';
+        }, 5000);
+    }, 3000);
 }
